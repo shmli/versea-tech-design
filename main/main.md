@@ -9,15 +9,16 @@ rectangle "Versea Core" #F5F5F5;line.dashed {
   rectangle "Application" #F8CECC {
     rectangle "AppService"
     rectangle "App"
-    AppService -> App: 2.new instance
+    AppService -> App: 2.new App instance
   }
-  rectangle "Router Module" #DAE8FC {
+  rectangle "Navigation" #DAE8FC {
     rectangle "Router"
+    rectangle "matcher"
     rectangle "Route"
     Router --down-> Route: 4.new instance & generate RoutesTree
     Router -> Router: 5.reroute
   }
-  App --> Router: 3.registerRoutes
+  App --> Router: 3.addRoutes
 }
 User --> AppService: 1.registerApp
 @enduml
