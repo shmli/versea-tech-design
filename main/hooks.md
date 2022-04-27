@@ -1,0 +1,17 @@
+1. beforeRegisterApp
+1. afterRegisterApp
+1. matchTree
+1. matchFragment
+1. matchRoute
+1. reroute
+1. beforeSwitch
+1. afterSwitch
+1. load
+1. loadApps
+1. unmount
+1. unmountApps
+1. unmountRootFragmentApps
+1. mount
+1. mountMainApps
+1. mountRootFragmentApps
+1. mountFragmentApps

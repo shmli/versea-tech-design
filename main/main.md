@@ -1,5 +1,43 @@
 # versea 架构
 
+## versea流程
+
+### 注册 App 流程
+
+1. 用户注册app
+1. 生成app实例
+1. 根据注册app时传入的routes生成路由实例并存入路由树，以下为路由树的简单示例
+    ```js
+    [
+      {
+        path: '/path1',
+        apps: [app1]
+      },
+      {
+        path: '/path2',
+        apps: [app2]
+      },
+    ]
+    ```
+
+### reroute流程
+
+当用户调用start 或 触发浏览器事件（路由切换或前进后退）会进入reroute流程
+
+1. 根据当前访问页面路由匹配路由树，以下为匹配到的路由树的简单示例
+    ```js
+    // 假设浏览器当前访问路径为 '/path1'
+    [
+      {
+        path: '/path1',
+        apps: [app1]
+      }
+    ]
+    ```
+1. 加载匹配到的app（加载源代码）
+1. 挂载app
+
+
 ### 注册 App 流程
 
 ```plantuml
@@ -70,26 +108,3 @@ User --> RouterModule: start or event
 
 reroute 流程较为复杂，是整个 versea/core 的核心，控制整个应用加载，卸载流程，这里重点介绍一下 AppSwitcherContext，它需要记录 App 的加载顺序，mount 顺序和卸载顺序。当 changeApp 触发时，会生成一个新的 AppSwitcherContext。然后销毁当前的 AppSwitcherContext，使用新的 AppSwitcherContext 替代它。
 
-### Hooks
-
-hooks 仅仅是在上述流程中增加一些前置和后置操作，常见的 hooks 如下
-
-1. beforeRegister
-2. Registered
-3. matchRoutes
-4. getRoutesTree
-5. createContent
-6. beforeLoad
-7. loaded
-8. beforeMount
-9. mounted
-10. beforeUnmount
-11. unmounted
-
-另外，提供一个 HookContext 也是很重要的，这样才能保证使用者很方便使用 hooks
-
-### Plugins
-
-同 Hooks 一样，这里需要有一个 PluginContext，方便取各种 service
-
-### versea 支持的模型
