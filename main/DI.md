@@ -21,4 +21,4 @@ container.load(buildProviderModule());
 // 测试
 console.log(container.get("Test") instanceof Test);
 console.log(container.get("TestConstructor") === TestConstructor);
-``
+```
