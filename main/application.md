@@ -1,4 +1,4 @@
-# Application模块
+# Application 模块
 
 ## AppService
 
@@ -6,7 +6,7 @@ AppService 是 versea 整个流程开始的地方，提供了 registerApp 和 re
 
 ### registerApp
 
-registerApp主要完成两件事
+registerApp 主要完成两件事
 
 1. 生成 App 实例
 1. 调用 Router 实例上的 addRoutes 方法开始注册路由流程
@@ -31,10 +31,12 @@ appServiceInstance.registerApps([
 
 ## App
 
-### App简介
+### App 简介
 
 用户注册的每一个应用都对应一个 app 实例，该实例主要包含
-- 当前 app 所处的状态
+
+- app 名称
+- app 当前所处的状态
 - 用户注册时传入的 loadApp 方法
 - bootstrap 、mount、unmount 钩子
 
